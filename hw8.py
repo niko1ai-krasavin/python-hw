@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def convert(x):
     if x.lower() != 'cancel':
         try:
