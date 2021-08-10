@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-print('Please insert numbers: ')
+print('Please insert the numbers: ')
 x = input()
 
 result = 0

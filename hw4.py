@@ -2,7 +2,7 @@
 
 import re
 
-print('Please insert numbers: ')
+print('Please insert the numbers: ')
 seq = input()
 
 strings = re.findall(r'[-|+]?\d+', seq)
