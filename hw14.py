@@ -18,25 +18,32 @@ import pickle
 
 
 class Employee:
-    employee_id = None
-    employee_name = "Unknown"
 
-    def __init__(self):
-        pass
+    def __init__(self, employee_id, employee_name):
+        self.__employee_id = employee_id
+        self.__employee_name = employee_name
 
-    def set_id(self, empl_id):
-        self.employee_id = empl_id
+    @property
+    def employee_id(self):
+        return self.__employee_id
 
-    def set_name(self, empl_name):
-        self.employee_name = empl_name
+    @employee_id.setter
+    def employee_id(self, employee_id):
+        self.__employee_id = employee_id
 
-    def get_id_and_name(self):
-        print("It is " + self.employee_name + " with id=" + str(self.employee_id))
+    @property
+    def employee_name(self):
+        return self.__employee_name
+
+    @employee_name.setter
+    def employee_name(self, employee_name):
+        self.__employee_name = employee_name
+
+    def __str__(self):
+        return "It is '" + self.__employee_name + "' with 'id' = " + str(self.__employee_id)
 
 
-mary_employee = Employee()
-mary_employee.set_id(1)
-mary_employee.set_name("Mary")
+mary_employee = Employee(1, "Mary")
 
 with open('mary_obj_pickle', 'wb') as output_file:
     pickle.dump(mary_employee, output_file)
@@ -44,4 +51,4 @@ with open('mary_obj_pickle', 'wb') as output_file:
 with open('mary_obj_pickle', 'rb') as input_file:
     new_mary_employee = pickle.load(input_file)
 
-new_mary_employee.get_id_and_name()
+print(new_mary_employee)
