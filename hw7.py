@@ -4,6 +4,7 @@ map_shell_count = {}
 map_user_UID = {}
 map_group_UIDs = {}
 
+output_file = open('output.txt', 'w+')
 
 with open('/etc/passwd', 'r') as passwd_fr:
     line_passwd = passwd_fr.readline().strip()
@@ -39,10 +40,15 @@ with open('/etc/group', 'r') as group_fr:
         map_group_UIDs.update({key_group: value_group})
         line_group = group_fr.readline().strip()
 
-print("\nNumber of users (UIDs) using all available shell interpreters:")
+output_file.write("\nNumber of users (UIDs) using all available shell interpreters:\n")
 for key, value in map_shell_count.items():
-    print(key, '-', value)
+    # print(key, '-', value)
+    output_file.write(key + ' - ' + str(value) + '\n')
 
-print("\nLinux system groups and UIDs of users in this groups:")
+output_file.write("\nLinux system groups and UIDs of users in this groups:\n")
 for key, value in map_group_UIDs.items():
-    print(key + ":", ",".join(value))
+    # print(key + ":", ",".join(value))
+    UIDs = ",".join(value)
+    output_file.write('' + key + ":" + UIDs + '\n')
+
+output_file.close()
